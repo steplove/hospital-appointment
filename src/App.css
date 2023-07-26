@@ -36,3 +36,125 @@
     transform: rotate(360deg);
   }
 }
+/* .navbar {
+  border-bottom: solid 1px #EBEBEB;
+}
+.bottom-tab-nav {
+  border-top: solid 1px #EBEBEB;
+}
+.nav-link,
+.bottom-nav-link {
+  color: #55575b;
+}
+
+.bottom-nav-link.active {
+  color: #922c88;
+}
+
+.bottom-tab-label {
+  font-size: 12px;
+} */
+.custom-nav-link {
+  background-color: lightgray;
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.custom-nav-link.active {
+  background-color: rgb(135, 135, 135);
+  color: white;
+  font-weight: bold;
+}
+.nav-icon {
+  transition: color 0.3s; /* กำหนดการเปลี่ยนสีเป็น transition ให้ไอคอนเลื่อนสีอย่างช้าๆ */
+}
+
+.nav-link.active .nav-icon {
+  color: rgb(169, 32, 178); /* กำหนดสีที่ต้องการเมื่อไอคอนถูกเลือก */
+}
+.nav-text {
+  font-size: 12px; /* ปรับขนาดตัวหนังสือตามที่คุณต้องการ */
+  text-transform: uppercase; /* ส่วนนี้จะทำให้ตัวหนังสือใหญ่ทั้งหมด */
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 15px; /* ปรับขนาดตัวหนังสือตามที่คุณต้องการ */
+  margin-top: 5px; /* ปรับระยะห่างระหว่างไอคอนและตัวหนังสือตามที่คุณต้องการ */
+}
+
+.agreement-text {
+  display: block;
+  height: 1px;
+  background-color: #ccc;
+  margin-bottom: 10px;
+
+}
+.agreement-color{
+background-color: #5d246c;
+border-radius: 10px;
+color: white;
+}
+.box{
+  border-radius: 50px;
+}
+.card-box{
+  background-color: #eaeaea;
+}
+.box-shadow{
+  box-shadow: 10px 10px 5px grey;
+}
+/* สีสำหรับสถานะ 'confirmed' */
+.status-confirmed {
+  color: green;
+}
+
+/* สีสำหรับสถานะ 'pending' */
+.status-pending {
+  color: orange;
+}
+
+/* สีสำหรับสถานะ 'cancelled' */
+.status-cancelled {
+  color: red;
+}
+.card {
+  width: 90%;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}

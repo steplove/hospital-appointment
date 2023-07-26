@@ -1,0 +1,10 @@
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set the minimum height of the container to the full viewport height */
+  }
+  
+  .bg-body-tertiary {
+    margin-top: auto; /* Push the footer to the bottom */
+  }
+  
