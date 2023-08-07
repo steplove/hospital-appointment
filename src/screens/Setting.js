@@ -45,17 +45,14 @@ function Setting() {
         </Card.Body>
       </Card>
       <br />
-      <Container>
-        <p>บาร์โค้ดของฉัน (My Barcode)</p>
-      </Container>
       <Card>
         <Card.Body>
+        <span>บาร์โค้ดของฉัน (My Barcode)</span>
             <Barcode value={hn_id} format="CODE39" style={{width:"100px"}}/>
         </Card.Body>
       </Card>
       <br />
       <Container>
-        <p>สำหรับคนไข้</p>
         <Card>
           <Card.Body className="card-box">
             <a href="/">
@@ -125,7 +122,7 @@ function Setting() {
         </Card>
       </Container>
       <div className="text-center mt-3">
-        <Button variant="outline-danger justify-center" onClick={handleLogout}>
+        <Button variant="danger justify-center" onClick={handleLogout}>
           {" "}
           ออกจากระบบ
         </Button>{" "}

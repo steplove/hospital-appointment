@@ -7,4 +7,6 @@
   .bg-body-tertiary {
     margin-top: auto; /* Push the footer to the bottom */
   }
-  
+  .foot-line{
+    border-top: 2px solid #000; /* ความหนาของเส้น 2px และสีดำ */
+  }

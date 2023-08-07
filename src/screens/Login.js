@@ -23,12 +23,9 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
+      {"© สงวนลิขสิทธิ์ "}
       {new Date().getFullYear()}
-      {"."}
+      {" บริษัท บางกอก เชน ฮอสปิทอล จำกัด (มหาชน) "}
     </Typography>
   );
 }
@@ -76,7 +73,7 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+         <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
           item

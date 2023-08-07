@@ -15,8 +15,6 @@ function Medical() {
       </nav>
       <br />
       <Container>
-        <strong>สำหรับคนไข้</strong>
-        <p></p>
         <Card>
           <Card.Body>
             <Row className="justify-content-center align-items-center mt-2">
@@ -54,7 +52,7 @@ function Medical() {
                 md={4}
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <a href="/">การนัดหมาย</a>
+                <a href="/Appointment">การนัดหมาย</a>
                 <span>Appointment</span>
               </Col>
             </Row>
@@ -76,6 +74,25 @@ function Medical() {
         </Card>
         <br />
         <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        
         <br />
       </Container>
     </>

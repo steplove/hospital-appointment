@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Container, Row, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
+import Foot from "../components/Foot"
+
 function Register() {
   const Swal = require("sweetalert2");
   useEffect(() => {
@@ -517,6 +519,8 @@ function Register() {
         <br />
         <br />
       </Container>
+      <Foot/>
+
     </>
   );
 }

@@ -49,6 +49,12 @@ function RegisterRecord() {
           <div>ไม่มีประวัตินัดหมาย</div>
         )}
       </div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </>
   );
 }

@@ -33,7 +33,7 @@ function useTokenCheck() {
           console.log(data.status);
           alert("Token หมดอายุ");
           localStorage.removeItem("token");
-          window.location = "/login";
+          window.location = "/Login";
         }
       })
       .catch((error) => {

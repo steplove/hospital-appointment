@@ -12,33 +12,42 @@ import Registration from "./screens/Registration";
 import Test from "./screens/Test";
 import ListDoctors from "./screens/ListDoctors";
 import RegisterRecord from "./screens/RegisterRecord";
+import Appointment from "./screens/Appointment";
+import OTP from "./screens/OTP";
 function App() {
   const currentPath = window.location.pathname;
 
   return (
     <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-      {currentPath !== "/login" &&currentPath !== "/register" && (
-        <>
-          <Navigation />
-          <Routes>
-            <Route path="/Agreement" element={<Agreement />} />
-            <Route path="/wait" element={<Wait />} />
-            <Route path="/medical" element={<Medical />} />
-            <Route path="/DeliveryMedicine" element={<DeliveryMedicine />} />
-            <Route path="/Setting" element={<Setting />} />
-            <Route path="/AppNotify" element={<AppNotify />} />
-            <Route path="/Registration" element={<Registration />} />
-            <Route path="/ListDoctors" element={<ListDoctors />} />
-            <Route path="/RegisterRecord" element={<RegisterRecord />} />
-            <Route path="/Test" element={<Test />} />
-          </Routes>
-        </>
-      )}
+      <>
+        <Routes>
+          <Route path="/Login" element={<Login />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/OTP" element={<OTP />} />
+        </Routes>
+      </>
+      {currentPath !== "/Login" &&
+        currentPath !== "/Register" &&
+        currentPath !== "/" &&
+        currentPath !== "/OTP" && (
+          <>
+            <Navigation />
+            <Routes>
+              <Route path="/Agreement" element={<Agreement />} />
+              <Route path="/Wait" element={<Wait />} />
+              <Route path="/Medical" element={<Medical />} />
+              <Route path="/DeliveryMedicine" element={<DeliveryMedicine />} />
+              <Route path="/Setting" element={<Setting />} />
+              <Route path="/AppNotify" element={<AppNotify />} />
+              <Route path="/Registration" element={<Registration />} />
+              <Route path="/ListDoctors" element={<ListDoctors />} />
+              <Route path="/RegisterRecord" element={<RegisterRecord />} />
+              <Route path="/Appointment" element={<Appointment />} />
+              <Route path="/Test" element={<Test />} />
+            </Routes>
+          </>
+        )}
     </Router>
   );
 }

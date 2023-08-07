@@ -215,6 +215,15 @@ function Registration() {
           </Col>
         </Row>
       </Container>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </>
   );
 }

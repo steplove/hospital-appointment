@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import useTokenCheck from "../hooks/useTokenCheck";
+import { BASE_URL } from "../constants/constants";
 
 function AppNotify() {
   const [username, lastname, hospitalNumber] = useTokenCheck();
   const [notify, setNotify] = useState([]);
   console.log(hospitalNumber, "asfasf");
   useEffect(() => {
-    fetch(
-      `http://localhost:3000/readAppointment?hospitalNumber=${hospitalNumber}`
-    )
+    fetch(BASE_URL + `/readAppointment?hospitalNumber=${hospitalNumber}`)
       .then((response) => response.json())
       .then((data) => {
         setNotify(data);
@@ -67,6 +66,12 @@ function AppNotify() {
       ) : (
         <div>ไม่มีประวัตินัดหมาย</div>
       )}
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 }

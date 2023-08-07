@@ -92,20 +92,19 @@
   height: 1px;
   background-color: #ccc;
   margin-bottom: 10px;
-
 }
-.agreement-color{
-background-color: #5d246c;
-border-radius: 10px;
-color: white;
+.agreement-color {
+  background-color: #5d246c;
+  border-radius: 10px;
+  color: white;
 }
-.box{
+.box {
   border-radius: 50px;
 }
-.card-box{
+.card-box {
   background-color: #eaeaea;
 }
-.box-shadow{
+.box-shadow {
   box-shadow: 10px 10px 5px grey;
 }
 /* สีสำหรับสถานะ 'confirmed' */
@@ -157,4 +156,12 @@ color: white;
 
 .btn:hover {
   background-color: #0056b3;
+}
+
+body {
+  background-image: url("./images/—Pngtree—purple\ bokeh\ light\ background_1604330.png"),
+    linear-gradient(to bottom, #f2f2f2, #ffffff);
+  background-size: cover, auto; /* ปรับขนาดภาพให้เต็มขนาดของพื้นที่รูปพื้นหลังและอัตโนมัติ */
+  background-position: center center, center bottom; /* ตำแหน่งภาพและสีที่จะแสดงในพื้นที่รูปพื้นหลัง */
+  background-repeat: no-repeat, repeat; /* ไม่ให้ภาพซ้ำซ้อนและทำให้สีที่ซ้ำซ้อนต่อเติม */
 }

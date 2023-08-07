@@ -6,7 +6,6 @@ import React, { useState, useEffect } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Card } from "react-bootstrap";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BASE_URL } from "../constants/constants";
 import useTokenCheck from "../hooks/useTokenCheck";
@@ -41,16 +40,9 @@ const events = [
   },
 ];
 
-function Test() {
-  const [newEvent, setNewEvent] = useState({
-    description: "",
-    start: "",
-    end: "",
-  });
+function Appointment() {
   const [allEvents, setAllEvents] = useState(events);
   const [username, lastname, hospitalNumber] = useTokenCheck();
-  const [notify, setNotify] = useState([]);
-  console.log(hospitalNumber, "asfasf");
 
   useEffect(() => {
     // โหลดข้อมูลนัดหมายจาก API เมื่อ hospitalNumber เปลี่ยนหรือโหลดครั้งแรก
@@ -67,19 +59,19 @@ function Test() {
       })
       .catch((error) => console.error(error));
   }, [hospitalNumber]);
-  function handleAddEvent() {
-    for (let i = 0; i < allEvents.length; i++) {
-      const d1 = new Date(allEvents[i].start);
-      const d2 = new Date(newEvent.start);
-      const d3 = new Date(allEvents[i].end);
-      const d4 = new Date(newEvent.end);
-      if ((d1 <= d2 && d2 <= d3) || (d1 <= d4 && d4 <= d3)) {
-        alert("CLASH");
-        break;
-      }
-    }
-    setAllEvents([...allEvents, newEvent]);
-  }
+//   function handleAddEvent() {
+//     for (let i = 0; i < allEvents.length; i++) {
+//       const d1 = new Date(allEvents[i].start);
+//       const d2 = new Date(newEvent.start);
+//       const d3 = new Date(allEvents[i].end);
+//       const d4 = new Date(newEvent.end);
+//       if ((d1 <= d2 && d2 <= d3) || (d1 <= d4 && d4 <= d3)) {
+//         alert("CLASH");
+//         break;
+//       }
+//     }
+//     setAllEvents([...allEvents, newEvent]);
+//   }
 
   return (
     <div className="App">
@@ -118,8 +110,16 @@ function Test() {
           style={{ height: 500, margin: "50px" }}
         />
       </Card>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
     </div>
   );
 }
 
-export default Test;
+export default Appointment;
