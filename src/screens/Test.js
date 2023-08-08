@@ -42,82 +42,57 @@ const events = [
 ];
 
 function Test() {
-  const [newEvent, setNewEvent] = useState({
-    description: "",
-    start: "",
-    end: "",
-  });
   const [allEvents, setAllEvents] = useState(events);
   const [username, lastname, hospitalNumber] = useTokenCheck();
-  const [notify, setNotify] = useState([]);
-  console.log(hospitalNumber, "asfasf");
-
   useEffect(() => {
     // โหลดข้อมูลนัดหมายจาก API เมื่อ hospitalNumber เปลี่ยนหรือโหลดครั้งแรก
-    fetch(BASE_URL + `/readAppointment?hospitalNumber=${hospitalNumber}`)
+    fetch(BASE_URL + `/api/readAppointment?hospitalNumber=${hospitalNumber}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data,"af555555555555555555");
+        console.log(data, "af555555555555555555");
         const formattedEvents = data.map((event) => ({
-          title: event.description, // ใช้ description แทน title
-          start: new Date(event.date_appointment), // แปลง string วันที่เป็น Date object
-          end: new Date(event.date_appointment), // แปลง string วันที่เป็น Date object
+          title: event.description,
+          start: new Date(event.date_appointment).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          }),
+          end: new Date(event.date_appointment).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          }),
+          time: event.time_appointment,
         }));
-        setAllEvents([...allEvents, ...formattedEvents]); // เพิ่มข้อมูลนัดหมายใน allEvents
+        setAllEvents([...allEvents, ...formattedEvents]);
+        
+        console.log(formattedEvents, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       })
       .catch((error) => console.error(error));
   }, [hospitalNumber]);
-  function handleAddEvent() {
-    for (let i = 0; i < allEvents.length; i++) {
-      const d1 = new Date(allEvents[i].start);
-      const d2 = new Date(newEvent.start);
-      const d3 = new Date(allEvents[i].end);
-      const d4 = new Date(newEvent.end);
-      if ((d1 <= d2 && d2 <= d3) || (d1 <= d4 && d4 <= d3)) {
-        alert("CLASH");
-        break;
-      }
-    }
-    setAllEvents([...allEvents, newEvent]);
-  }
 
   return (
     <div className="App">
       <Card className="mt-5">
         <h1 className="mt-5">ปฏิทิน การนัดหมาย</h1>
-        {/* <div>
-          <input
-            type="text"
-            placeholder="Add Title"
-            style={{ width: "20%", marginRight: "10px" }}
-            value={newEvent.title}
-            onChange={(e) =>
-              setNewEvent({ ...newEvent, title: e.target.value })
-            }
-          />
-          <DatePicker
-            placeholderText="Start Date"
-            style={{ marginRight: "10px" }}
-            selected={newEvent.start}
-            onChange={(start) => setNewEvent({ ...newEvent, start })}
-          />
-          <DatePicker
-            placeholderText="End Date"
-            selected={newEvent.end}
-            onChange={(end) => setNewEvent({ ...newEvent, end })}
-          />
-          <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
-            Add Event
-          </button>
-        </div> */}
         <Calendar
           localizer={localizer}
           events={allEvents}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: 500, margin: "50px" }}
+          style={{ height: 700 }}
+          toolbar={true}
+          view="agenda"
         />
       </Card>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

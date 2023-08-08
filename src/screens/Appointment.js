@@ -77,31 +77,6 @@ function Appointment() {
     <div className="App">
       <Card className="mt-5">
         <h1 className="mt-5">ปฏิทิน การนัดหมาย</h1>
-        {/* <div>
-          <input
-            type="text"
-            placeholder="Add Title"
-            style={{ width: "20%", marginRight: "10px" }}
-            value={newEvent.title}
-            onChange={(e) =>
-              setNewEvent({ ...newEvent, title: e.target.value })
-            }
-          />
-          <DatePicker
-            placeholderText="Start Date"
-            style={{ marginRight: "10px" }}
-            selected={newEvent.start}
-            onChange={(start) => setNewEvent({ ...newEvent, start })}
-          />
-          <DatePicker
-            placeholderText="End Date"
-            selected={newEvent.end}
-            onChange={(end) => setNewEvent({ ...newEvent, end })}
-          />
-          <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
-            Add Event
-          </button>
-        </div> */}
         <Calendar
           localizer={localizer}
           events={allEvents}

@@ -11,9 +11,10 @@ import {
 import useTokenCheck from "../hooks/useTokenCheck";
 // ES6 Modules or TypeScript
 import Swal from "sweetalert2";
+import { BASE_URL } from "../constants/constants";
 function Registration() {
-    // CommonJS
-    const Swal = require("sweetalert2");
+  // CommonJS
+  const Swal = require("sweetalert2");
   const [identificationNumber, lastname, hospitalNumber] = useTokenCheck();
   const [appointmentDate, setAppointmentDate] = useState("");
   const [appointmentTime, setAppointmentTime] = useState("");
@@ -46,7 +47,7 @@ function Registration() {
 
     console.log(employeeData);
 
-    fetch("http://localhost:3000/addAppointment", {
+    fetch(BASE_URL + "/api/addAppointment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,20 +61,15 @@ function Registration() {
         return response.json(); // แก้ไขเป็น response.json() เพื่อดึงข้อมูล JSON ที่ส่งกลับมาจากเซิร์ฟเวอร์
       })
       .then((data) => {
-        
         console.log(data);
-        Swal.fire(
-          'Save Success',
-          'You clicked the button!',
-          'success'
-        )
+        Swal.fire("Save Success", "You clicked the button!", "success");
         handleCancel();
       })
       .catch((error) => {
         console.error(error);
         Swal.fire({
           icon: "error",
-          title: "Oops..."+ error.message,
+          title: "Oops..." + error.message,
           text: "Something went wrong!",
         });
         handleCancel();
@@ -85,6 +81,7 @@ function Registration() {
     setAppointmentTime("");
     setSelectClinic("");
     setSelectDoctor("");
+    setDescription("");
   };
   //================================ handleAppointmentTimeChange=====================//
 
@@ -215,15 +212,15 @@ function Registration() {
           </Col>
         </Row>
       </Container>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 }

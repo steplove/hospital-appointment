@@ -8,7 +8,7 @@ function AppNotify() {
   const [notify, setNotify] = useState([]);
   console.log(hospitalNumber, "asfasf");
   useEffect(() => {
-    fetch(BASE_URL + `/readAppointment?hospitalNumber=${hospitalNumber}`)
+    fetch(BASE_URL + `/api/readAppointment?hospitalNumber=${hospitalNumber}`)
       .then((response) => response.json())
       .then((data) => {
         setNotify(data);

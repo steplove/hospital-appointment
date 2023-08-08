@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSquarePlus,
-  faTruckMedical,
   faGear,
   faBell,
 } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
+import { Col } from "react-bootstrap";
 const Navigation = (props) => {
   const initialLoggedInState = localStorage.getItem("token") ? true : false;
   const [isLoggedIn, setIsLoggedIn] = useState(initialLoggedInState);
@@ -52,11 +52,13 @@ const Navigation = (props) => {
             </>
           ) : (
             <>
-              <NavItem>
-                <NavLink to="/" className="nav-link" onClick={handleLogout}>
-                  ออกจากระบบ {/* เปลี่ยนข้อความเมนูเป็น "ออกจากระบบ" */}
-                </NavLink>
-              </NavItem>
+              <div style={{ display: "flex", justifyContent: "flex-end" ,marginLeft:"90%"}}>
+                <NavItem>
+                  <NavLink to="/" className="nav-link" onClick={handleLogout}>
+                    <div>ออกระบบ</div>
+                  </NavLink>
+                </NavItem>
+              </div>
             </>
           )}
         </Nav>
