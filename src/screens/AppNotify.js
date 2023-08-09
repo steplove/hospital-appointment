@@ -2,20 +2,24 @@ import React, { useEffect, useState } from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import useTokenCheck from "../hooks/useTokenCheck";
 import { BASE_URL } from "../constants/constants";
-
+import useFetch from "../hooks/useFetch";
 function AppNotify() {
   const [username, lastname, hospitalNumber] = useTokenCheck();
-  const [notify, setNotify] = useState([]);
-  console.log(hospitalNumber, "asfasf");
-  useEffect(() => {
-    fetch(BASE_URL + `/api/readAppointment?hospitalNumber=${hospitalNumber}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setNotify(data);
-        console.log(data, "sgsd");
-      })
-      .catch((error) => console.error(error));
-  }, [hospitalNumber]);
+  const {
+    data: notify,
+    loading,
+    error,
+  } = useFetch(
+    `${BASE_URL}/api/readAppointment?hospitalNumber=${hospitalNumber}`
+  );
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <>
@@ -32,9 +36,8 @@ function AppNotify() {
             style={{ margin: "auto", marginTop: "10px" }}
           >
             <Card.Text>
-              <Row>
+              <Row style={{ borderBottom: "2px solid #ccc" }}>
                 <Col xs={9}>
-                  {/* แสดงส่วนของวันที่ (วันเดือนปี) และเวลา (ชั่วโมงและนาที) */}
                   <span style={{ fontSize: "12px" }}>
                     {new Date(appointment.created_at).toLocaleString("th-TH", {
                       dateStyle: "short",
@@ -48,18 +51,27 @@ function AppNotify() {
                   </span>
                 </Col>
               </Row>
-              <Card.Title
-                style={{ borderBottom: "2px solid #ccc" }}
-              ></Card.Title>
             </Card.Text>
-            <Card.Body style={{ fontSize: "12px" }}>
-              <span>HN : </span> {appointment.hospitalNumber}{" "}
-              <span>นัดวันที่ : </span>
-              {new Date(appointment.date_appointment).toLocaleString("th-TH", {
-                dateStyle: "short",
-              })}
-              {""}
-              <span> สถานที่ :</span> {appointment.clinic}
+            <Card.Body className="font-size-small text-start">
+              <Row>
+                <Col xs={6}>
+                  <h6>HN : {appointment.hospitalNumber}</h6>
+                </Col>
+                <Col xs={6}>
+                  <h6>
+                    นัดวันที่ :{" "}
+                    {new Date(appointment.date_appointment).toLocaleString(
+                      "th-TH",
+                      {
+                        dateStyle: "short",
+                      }
+                    )}
+                  </h6>
+                </Col>
+                <Col xs={6}>
+                  <h6> สถานที่ : {appointment.clinic}</h6>
+                </Col>
+              </Row>
             </Card.Body>
           </Card>
         ))

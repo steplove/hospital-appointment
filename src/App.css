@@ -1,59 +1,4 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-/* .navbar {
-  border-bottom: solid 1px #EBEBEB;
-}
-.bottom-tab-nav {
-  border-top: solid 1px #EBEBEB;
-}
-.nav-link,
-.bottom-nav-link {
-  color: #55575b;
-}
-
-.bottom-nav-link.active {
-  color: #922c88;
-}
-
-.bottom-tab-label {
-  font-size: 12px;
-} */
 .custom-nav-link {
   background-color: lightgray;
   color: black;
@@ -98,15 +43,7 @@
   border-radius: 10px;
   color: white;
 }
-.box {
-  border-radius: 50px;
-}
-.card-box {
-  background-color: #eaeaea;
-}
-.box-shadow {
-  box-shadow: 10px 10px 5px grey;
-}
+
 /* สีสำหรับสถานะ 'confirmed' */
 .status-confirmed {
   color: green;
@@ -121,54 +58,11 @@
 .status-cancelled {
   color: red;
 }
-.card {
-  width: 90%;
-  margin: auto;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-content {
-  padding: 20px;
-}
-
-.card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 20px;
-}
-
-.btn {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-.btn:hover {
-  background-color: #0056b3;
-}
 
 body {
-  background-image: url("./images/—Pngtree—purple\ bokeh\ light\ background_1604330.png"),
-    linear-gradient(to bottom, #f2f2f2, #ffffff);
-  background-size: cover, auto; /* ปรับขนาดภาพให้เต็มขนาดของพื้นที่รูปพื้นหลังและอัตโนมัติ */
-  background-position: center center, center bottom; /* ตำแหน่งภาพและสีที่จะแสดงในพื้นที่รูปพื้นหลัง */
-  background-repeat: no-repeat, repeat; /* ไม่ให้ภาพซ้ำซ้อนและทำให้สีที่ซ้ำซ้อนต่อเติม */
-}
-.time-slot {
-  background-color: #f2f2f2;
-  border-top: 1px solid #e4e4e4;
-  padding: 5px;
-  text-align: right;
-  font-size: 12px;
+  background-image: url("./images/purple.jpg");
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.5); /* ใช้ rgba() เพื่อเพิ่มความโปร่งใสให้กับพื้นหลัง */
 }

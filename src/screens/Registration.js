@@ -114,113 +114,117 @@ function Registration() {
           <Col xs={12} md={6} lg={12}>
             <Card className="box-shadow">
               <Card.Body>
-                <Row>
-                  <Col xs={5}>
-                    <strong>ชื่อ {identificationNumber}</strong>
+                <Col xs={12} className="d-flex align-items-center">
+                  <Col xs={2}>
+                    <h6>ชื่อ</h6>
                   </Col>
-                  <Col xs={6}>
-                    <strong>นามสกุล {lastname}</strong>
+                  <Col xs={4}>
+                    <strong>{identificationNumber}</strong>
                   </Col>
-                </Row>
-                <Row>
-                  <Col xs={5}>
-                    <strong>HN {hospitalNumber}</strong>
+                  <Col xs={2} className="d-flex align-items-center">
+                    <h6>นามสกุล</h6>
                   </Col>
-                </Row>
+                  <Col xs={4}>
+                    <strong>{lastname}</strong>
+                  </Col>
+                </Col>
+                <Col xs={12} className="d-flex align-items-center">
+                  <Col xs={2}>
+                    <h6>HN</h6>
+                  </Col>
+                  <Col xs={4}>
+                    <strong>{hospitalNumber}</strong>
+                  </Col>
+                </Col>
               </Card.Body>
             </Card>
           </Col>
           <Col xs={12} md={6} lg={12}>
-            <Card className="box-shadow mt-2">
+            <Card className="mt-2">
               <Card.Body>
-                <Form onSubmit={handleRegister}>
-                  <Col>
-                    <FormGroup>
-                      <Form.Label>
-                        <strong>วันที่นัด</strong>
-                      </Form.Label>
-                      <Form.Control
-                        type="date"
-                        value={appointmentDate}
-                        onChange={handleAppointmentDateChange}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col>
-                    <FormGroup>
-                      <Form.Label>
-                        <strong>เวลาที่นัด</strong>
-                      </Form.Label>
-                      <Form.Control
-                        type="time"
-                        value={appointmentTime}
-                        onChange={handleAppointmentTimeChange}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col>
-                    <FormGroup>
-                      <Form.Label>
-                        <strong>เลือกคลิลิก</strong>
-                      </Form.Label>
-                      <Form.Select
-                        aria-label="Default select example"
-                        value={selectClinic}
-                        onChange={handleSelectClinicChange}
-                      >
-                        <option>เลือกคลิลิก.....</option>
-                        <option value="อายุรกรรม">อายุรกรรม</option>
-                      </Form.Select>
-                    </FormGroup>
-                  </Col>
-                  <Col>
-                    <FormGroup>
-                      <Form.Label>
-                        <strong>เลือกหมอ</strong>
-                      </Form.Label>
-                      <Form.Select
-                        aria-label="Default select example"
-                        value={selectDoctor}
-                        onChange={handleSelectDoctorChange}
-                      >
-                        <option>เลือกหมอ.....</option>
-                        <option value="หมอฟัน">หมอฟัน</option>
-                      </Form.Select>
-                    </FormGroup>
-                  </Col>
-                  <Col>
-                    <FormGroup>
-                      <Form.Label>
-                        <strong>อาการเบื้องต้น</strong>
-                      </Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={3}
-                        value={description}
-                        onChange={handleDescriptionChange}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Row className="justify-content-center mt-3">
-                    <Button type="submit" variant="success">
-                      ยืนยัน
-                    </Button>{" "}
-                  </Row>
-                </Form>
+                <Container fluid>
+                  <Form onSubmit={handleRegister}>
+                    <Row className="row-cols-1">
+                      <Col>
+                        <FormGroup>
+                          <Form.Label>
+                            <strong>วันที่นัด</strong>
+                          </Form.Label>
+                          <Form.Control
+                            type="date"
+                            value={appointmentDate}
+                            onChange={handleAppointmentDateChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col>
+                        <FormGroup>
+                          <Form.Label>
+                            <strong>เวลาที่นัด</strong>
+                          </Form.Label>
+                          <Form.Control
+                            type="time"
+                            value={appointmentTime}
+                            onChange={handleAppointmentTimeChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col>
+                        <FormGroup>
+                          <Form.Label>
+                            <strong>เลือกคลิลิก</strong>
+                          </Form.Label>
+                          <Form.Select
+                            aria-label="Default select example"
+                            value={selectClinic}
+                            onChange={handleSelectClinicChange}
+                          >
+                            <option>เลือกคลิลิก.....</option>
+                            <option value="อายุรกรรม">อายุรกรรม</option>
+                          </Form.Select>
+                        </FormGroup>
+                      </Col>
+                      <Col>
+                        <FormGroup>
+                          <Form.Label>
+                            <strong>เลือกหมอ</strong>
+                          </Form.Label>
+                          <Form.Select
+                            aria-label="Default select example"
+                            value={selectDoctor}
+                            onChange={handleSelectDoctorChange}
+                          >
+                            <option>เลือกหมอ.....</option>
+                            <option value="หมอฟัน">หมอฟัน</option>
+                          </Form.Select>
+                        </FormGroup>
+                      </Col>
+                      <Col>
+                        <FormGroup>
+                          <Form.Label>
+                            <strong>อาการเบื้องต้น</strong>
+                          </Form.Label>
+                          <Form.Control
+                            as="textarea"
+                            rows={3}
+                            value={description}
+                            onChange={handleDescriptionChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row className="justify-content-center mt-3">
+                      <Button type="submit" variant="success">
+                        ยืนยัน
+                      </Button>{" "}
+                    </Row>
+                  </Form>
+                </Container>
               </Card.Body>
             </Card>
           </Col>
         </Row>
       </Container>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </>
   );
 }

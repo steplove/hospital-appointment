@@ -14,6 +14,7 @@ import ListDoctors from "./screens/ListDoctors";
 import RegisterRecord from "./screens/RegisterRecord";
 import Appointment from "./screens/Appointment";
 import OTP from "./screens/OTP";
+import History from "./screens/History";
 function App() {
   const currentPath = window.location.pathname;
 
@@ -44,6 +45,7 @@ function App() {
               <Route path="/ListDoctors" element={<ListDoctors />} />
               <Route path="/RegisterRecord" element={<RegisterRecord />} />
               <Route path="/Appointment" element={<Appointment />} />
+              <Route path="/History" element={<History />} />
               <Route path="/Test" element={<Test />} />
             </Routes>
           </>

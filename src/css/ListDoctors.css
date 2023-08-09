@@ -1,0 +1,30 @@
+/* ปรับ CSS ให้รูปภาพขยายใหญ่เมื่อ Hover ที่ Card */
+.card {
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1); /* ปรับขนาดให้เล็กน้อยเมื่อไม่ Hover */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.8);
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวแกน X */
+  text-align: center; /* จัดให้ข้อความอยู่ตรงกลาง */
+}
+
+.card-img-top {
+  width: 300px;
+  height: 300px;
+  transition: transform 0.3s;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.2);
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.2); /* ขยายรูปภาพเมื่อ Hover */
+}

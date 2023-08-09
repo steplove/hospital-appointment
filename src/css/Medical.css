@@ -1,0 +1,49 @@
+.card-container {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-background-e7dcfc {
+  background: #d4d2f2;
+  color: white;
+}
+
+.card-background-d4d2f2 {
+  background: #e8abb5;
+  color: white;
+}
+
+.card-background-calendar {
+  background: #b3dbd8;
+  color: white;
+}
+
+.card-background-conference {
+  background: #a8d1e7;
+  color: white;
+}
+.card-background-reaction {
+  background: #916848;
+  color: white;
+}
+
+.card-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.card-link:hover {
+  color: #ffc107;
+}
+.card-hover {
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+.card-hover:hover {
+  transform: scale(1.2);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.8);
+}

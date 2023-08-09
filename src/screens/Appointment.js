@@ -21,78 +21,48 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const events = [
-  {
-    description: "Big Meeting",
-    allDay: true,
-    start: new Date(2021, 6, 0),
-    end: new Date(2021, 6, 0),
-  },
-  {
-    description: "Vacation",
-    start: new Date(2021, 6, 7),
-    end: new Date(2021, 6, 10),
-  },
-  {
-    description: "Conference",
-    start: new Date(2021, 6, 20),
-    end: new Date(2021, 6, 23),
-  },
-];
-
 function Appointment() {
-  const [allEvents, setAllEvents] = useState(events);
+  const [allEvents, setAllEvents] = useState([]);
   const [username, lastname, hospitalNumber] = useTokenCheck();
 
   useEffect(() => {
-    // โหลดข้อมูลนัดหมายจาก API เมื่อ hospitalNumber เปลี่ยนหรือโหลดครั้งแรก
-    fetch(BASE_URL + `/readAppointment?hospitalNumber=${hospitalNumber}`)
+    fetch(BASE_URL + `/api/readAppointment?hospitalNumber=${hospitalNumber}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data,"af555555555555555555");
-        const formattedEvents = data.map((event) => ({
-          title: event.description, // ใช้ description แทน title
-          start: new Date(event.date_appointment), // แปลง string วันที่เป็น Date object
-          end: new Date(event.date_appointment), // แปลง string วันที่เป็น Date object
-        }));
-        setAllEvents([...allEvents, ...formattedEvents]); // เพิ่มข้อมูลนัดหมายใน allEvents
+        const formattedEvents = data.map((event) => {
+          const appointmentDate = new Date(event.date_appointment);
+          const appointmentTime = new Date(`1970-01-01T${event.time_appointment}`);
+          const start = new Date(appointmentDate);
+          start.setHours(appointmentTime.getHours());
+          start.setMinutes(appointmentTime.getMinutes());
+          const end = new Date(start);
+          end.setMinutes(start.getMinutes() + 30); // หรือเวลาที่เหมาะสม
+          
+          return {
+            title: event.description,
+            start,
+            end,
+          };
+        });
+        setAllEvents([...allEvents, ...formattedEvents]);
       })
       .catch((error) => console.error(error));
   }, [hospitalNumber]);
-//   function handleAddEvent() {
-//     for (let i = 0; i < allEvents.length; i++) {
-//       const d1 = new Date(allEvents[i].start);
-//       const d2 = new Date(newEvent.start);
-//       const d3 = new Date(allEvents[i].end);
-//       const d4 = new Date(newEvent.end);
-//       if ((d1 <= d2 && d2 <= d3) || (d1 <= d4 && d4 <= d3)) {
-//         alert("CLASH");
-//         break;
-//       }
-//     }
-//     setAllEvents([...allEvents, newEvent]);
-//   }
 
   return (
     <div className="App">
       <Card className="mt-5">
-        <h1 className="mt-5">ปฏิทิน การนัดหมาย</h1>
+        <h1 className="mt-5 text-center">ปฏิทิน การนัดหมาย</h1>
         <Calendar
           localizer={localizer}
           events={allEvents}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: 500, margin: "50px" }}
+          style={{ height: 700 }}
+          toolbar={false}
+          view="agenda"
         />
       </Card>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-
     </div>
   );
 }

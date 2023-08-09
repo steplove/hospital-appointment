@@ -6,7 +6,7 @@ import Barcode from "react-barcode";
 import Swal from "sweetalert2";
 function Setting() {
   const Swal = require("sweetalert2");
-  const [username, lastname, hn_id] = useTokenCheck();
+  const [identificationNumber, lastname, hospitalNumber] = useTokenCheck();
   const handleLogout = () => {
     Swal.fire({
       icon: "success",
@@ -27,35 +27,45 @@ function Setting() {
       <br />
       <Card>
         <Card.Body>
-          <Row>
-            <Col xs={3} sm={3} md={3} lg={2}>
-              <Image
-                src={logo}
-                roundedCircle
-                style={{ width: "80px", height: "80px" }}
-              />
+          <Col xs={12} className="d-flex align-items-center">
+            <Col xs={2}>
+              <h6>ชื่อ</h6>
             </Col>
-            <Col xs={9} sm={9} md={9} lg={10} className="align-self-center">
-              <span>
-                ชื่อ {username} นามสกุล {lastname}
-              </span>
-              <p>hn {hn_id}</p>
+            <Col xs={4}>
+              <strong>{identificationNumber}</strong>
             </Col>
-          </Row>
+            <Col xs={2} className="d-flex align-items-center">
+              <h6>นามสกุล</h6>
+            </Col>
+            <Col xs={4}>
+              <strong>{lastname}</strong>
+            </Col>
+          </Col>
+          <Col xs={12} className="d-flex align-items-center">
+            <Col xs={2}>
+              <h6>HN</h6>
+            </Col>
+            <Col xs={4}>
+              <strong>{hospitalNumber}</strong>
+            </Col>
+          </Col>
         </Card.Body>
       </Card>
       <br />
       <Card>
         <Card.Body>
-        <span>บาร์โค้ดของฉัน (My Barcode)</span>
-            <Barcode value={hn_id} format="CODE39" style={{width:"100px"}}/>
+          <span>บาร์โค้ดของฉัน (My Barcode)</span>
+          <Barcode
+            value={hospitalNumber}
+            format="CODE39"
+            style={{ width: "100px" }}
+          />
         </Card.Body>
       </Card>
       <br />
       <Container>
         <Card>
           <Card.Body className="card-box">
-            <a href="/">
               <Row>
                 <Col xs={3} sm={3} md={3} lg={2}>
                   <Image
@@ -69,7 +79,6 @@ function Setting() {
                   <p>Drug allergy/Side effects</p>
                 </Col>
               </Row>
-            </a>
             <div className="agreement-text w100"></div>
             <a href="/">
               <Row>
@@ -127,12 +136,12 @@ function Setting() {
           ออกจากระบบ
         </Button>{" "}
       </div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 }
