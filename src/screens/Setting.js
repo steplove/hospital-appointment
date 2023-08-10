@@ -14,7 +14,7 @@ function Setting() {
       text: "You have successfully logged out.",
     }).then(() => {
       localStorage.removeItem("token");
-      window.location = "/login";
+      window.location = "/Login";
     });
   };
   return (
@@ -26,6 +26,12 @@ function Setting() {
       </nav>{" "}
       <br />
       <Card>
+        <Card.Header
+          className="text-center"
+          style={{ backgroundColor: "black", color: "white" }}
+        >
+          <h4>ข้อมูลส่วนตัว</h4>
+        </Card.Header>
         <Card.Body>
           <Col xs={12} className="d-flex align-items-center">
             <Col xs={2}>
@@ -53,8 +59,13 @@ function Setting() {
       </Card>
       <br />
       <Card>
+        <Card.Header
+          className="text-center"
+          style={{ backgroundColor: "black", color: "white" }}
+        >
+          <h4>บาร์โค้ดของฉัน (My Barcode)</h4>
+        </Card.Header>
         <Card.Body>
-          <span>บาร์โค้ดของฉัน (My Barcode)</span>
           <Barcode
             value={hospitalNumber}
             format="CODE39"
@@ -66,19 +77,19 @@ function Setting() {
       <Container>
         <Card>
           <Card.Body className="card-box">
-              <Row>
-                <Col xs={3} sm={3} md={3} lg={2}>
-                  <Image
-                    src={logo}
-                    roundedCircle
-                    style={{ width: "50px", height: "50px" }}
-                  />
-                </Col>
-                <Col xs={9} sm={9} md={9} lg={10} className="align-self-center">
-                  <span>แพ้ยา/อาการไม่พึงประสงค์</span>
-                  <p>Drug allergy/Side effects</p>
-                </Col>
-              </Row>
+            <Row>
+              <Col xs={3} sm={3} md={3} lg={2}>
+                <Image
+                  src={logo}
+                  roundedCircle
+                  style={{ width: "50px", height: "50px" }}
+                />
+              </Col>
+              <Col xs={9} sm={9} md={9} lg={10} className="align-self-center">
+                <span>แพ้ยา/อาการไม่พึงประสงค์</span>
+                <p>Drug allergy/Side effects</p>
+              </Col>
+            </Row>
             <div className="agreement-text w100"></div>
             <a href="/">
               <Row>

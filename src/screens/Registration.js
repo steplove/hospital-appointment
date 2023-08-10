@@ -113,6 +113,12 @@ function Registration() {
         <Row className="justify-content-center mt-5">
           <Col xs={12} md={6} lg={12}>
             <Card className="box-shadow">
+              <Card.Header
+                className="text-center"
+                style={{ backgroundColor: "black", color: "white" }}
+              >
+                <h4>ข้อมูล</h4>
+              </Card.Header>
               <Card.Body>
                 <Col xs={12} className="d-flex align-items-center">
                   <Col xs={2}>
@@ -141,6 +147,12 @@ function Registration() {
           </Col>
           <Col xs={12} md={6} lg={12}>
             <Card className="mt-2">
+              <Card.Header
+                className="text-center"
+                style={{ backgroundColor: "black", color: "white" }}
+              >
+                <h4>นัดหมาย</h4>
+              </Card.Header>
               <Card.Body>
                 <Container fluid>
                   <Form onSubmit={handleRegister}>

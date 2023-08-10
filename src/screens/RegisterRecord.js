@@ -25,36 +25,48 @@ function RegisterRecord() {
         </div>
       </nav>
       <br />
-      <div className="d-flex flex-wrap justify-content-between">
-        {notify && notify.length > 0 ? (
-          notify.map((appointment) => (
-            <Card key={appointment.id} style={{ margin: "auto", marginTop: "10px" }}>
-            <Card.Title >
-              <span style={{ fontSize: "0.8rem", marginLeft: "10px" }}>
-                {appointment.hospitalNumber}
-              </span>
-            </Card.Title>
-            <Card.Title style={{ borderBottom: "2px solid #ccc" }}></Card.Title>
+      {notify && notify.length > 0 ? (
+        <div className="d-flex flex-wrap justify-content-between">
+          {notify.map((appointment) => (
+            <Card
+              key={appointment.id}
+              style={{
+                margin: "10px",
+                width: "100%", // ขยายขนาดการ์ดให้เต็มรูปแบบ
+                borderBottom: "2px solid #ccc", // เพิ่มเส้นใต้การ์ด
+              }}
+            >
+              <Card.Title>
+                <span style={{ fontSize: "0.8rem", marginLeft: "10px" }}>
+                  {appointment.hospitalNumber}
+                </span>
+              </Card.Title>
+              <Card.Body>
+                <span>{appointment.firstName}</span>{" "}
+                <span>{appointment.lastName}</span>
+                <p>
+                  {new Date(appointment.date_appointment).toLocaleDateString()}
+                </p>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <Card>
             <Card.Body>
-              <span>{appointment.firstName}</span>{" "}
-              <span>{appointment.lastName}</span>
-              <p>
-                {new Date(appointment.date_appointment).toLocaleDateString()}
-              </p>
+              <h1>ไม่มีประวัตินัดหมาย</h1>
             </Card.Body>
           </Card>
-          
-          ))
-        ) : (
-          <div>ไม่มีประวัตินัดหมาย</div>
-        )}
-      </div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+        </div>
+      )}
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 }

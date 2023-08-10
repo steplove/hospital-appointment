@@ -76,7 +76,13 @@ function AppNotify() {
           </Card>
         ))
       ) : (
-        <div>ไม่มีประวัตินัดหมาย</div>
+        <div>
+          <Card>
+            <Card.Body>
+              <h1>ไม่มีการแจ้งเตือน</h1>
+            </Card.Body>
+          </Card>
+        </div>
       )}
       <br />
       <br />

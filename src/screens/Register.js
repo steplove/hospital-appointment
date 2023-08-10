@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Container, Row, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Foot from "../components/Foot"
+import Foot from "../components/Foot";
 
 function Register() {
   const Swal = require("sweetalert2");
@@ -11,7 +11,7 @@ function Register() {
   //================================ select Rank ===================================//
   const [readProvince, setReadProvince] = useState([]);
   const fetchReadProvinceData = () => {
-    fetch("http://localhost:3000/readProvince")
+    fetch("http://localhost:3000/api/readProvince")
       .then((response) => {
         return response.json();
       })
@@ -24,7 +24,7 @@ function Register() {
   const fetchAmphures = (provinceName) => {
     console.log(provinceName);
 
-    fetch(`http://localhost:3000/readAmphures?provinceName=${provinceName}`)
+    fetch(`http://localhost:3000/api/readAmphures?provinceName=${provinceName}`)
       .then((response) => response.json())
       .then((data) => {
         setAmphures(data);
@@ -38,7 +38,7 @@ function Register() {
   const fetchSubDistricts = (provinceName) => {
     console.log(provinceName);
 
-    fetch(`http://localhost:3000/readDistricts?provinceName=${provinceName}`)
+    fetch(`http://localhost:3000/api/readDistricts?provinceName=${provinceName}`)
       .then((response) => response.json())
       .then((data) => {
         setSubDistricts(data);
@@ -51,7 +51,7 @@ function Register() {
 
   const fetchPostalCodes = (provinceName) => {
     console.log(provinceName);
-    fetch(`http://localhost:3000/readPostalCodes?provinceName=${provinceName}`)
+    fetch(`http://localhost:3000/api/readPostalCodes?provinceName=${provinceName}`)
       .then((response) => response.json())
       .then((data) => {
         setPostalCodes(data);
@@ -135,7 +135,7 @@ function Register() {
       console.log("Form data:", formData);
 
       // ส่งข้อมูลไปยัง Node.js backend ที่อยู่ใน endpoint /registration โดยใช้ fetch API
-      fetch("http://localhost:3000/registration", {
+      fetch("http://localhost:3000/api/insertCustomer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -195,7 +195,13 @@ function Register() {
         <Row className="justify-content-center mt-5">
           <Col xs={12} md={6} lg={12}>
             <Card>
-              <Card.Title className="mt-3 text-center">สมัครสมาชิก</Card.Title>
+              <Card.Header
+                className="text-center"
+                style={{ backgroundColor: "black", color: "white" }}
+              >
+                <h4>สมัครสมาชิก</h4>
+              </Card.Header>
+
               <Card.Body>
                 <p className="text-danger">
                   * กรุณาตรวจสอบข้อมูลและกรอกข้อมูลให้ครบทุกช่อง
@@ -515,12 +521,8 @@ function Register() {
             </Card>
           </Col>
         </Row>
-        <br />
-        <br />
-        <br />
       </Container>
-      <Foot/>
-
+      <Foot />
     </>
   );
 }

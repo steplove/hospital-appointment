@@ -55,7 +55,7 @@ export default function Login() {
             () => {
               localStorage.setItem("token", data.token);
               localStorage.setItem("identificationNumber", data.identificationNumber);
-              window.location = "/medical";
+              window.location = "/Medical";
             }
           );
         } else {
