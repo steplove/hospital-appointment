@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Col, Container, Row, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Foot from "../components/Foot";
+import { BASE_URL } from "../constants/constants";
 
 function Register() {
   const Swal = require("sweetalert2");
@@ -11,7 +12,7 @@ function Register() {
   //================================ select Rank ===================================//
   const [readProvince, setReadProvince] = useState([]);
   const fetchReadProvinceData = () => {
-    fetch("http://localhost:3000/api/readProvince")
+    fetch(BASE_URL + "/api/readProvince")
       .then((response) => {
         return response.json();
       })
@@ -24,7 +25,7 @@ function Register() {
   const fetchAmphures = (provinceName) => {
     console.log(provinceName);
 
-    fetch(`http://localhost:3000/api/readAmphures?provinceName=${provinceName}`)
+    fetch(BASE_URL + `/api/readAmphures?provinceName=${provinceName}`)
       .then((response) => response.json())
       .then((data) => {
         setAmphures(data);
@@ -38,7 +39,7 @@ function Register() {
   const fetchSubDistricts = (provinceName) => {
     console.log(provinceName);
 
-    fetch(`http://localhost:3000/api/readDistricts?provinceName=${provinceName}`)
+    fetch(BASE_URL + `/api/readDistricts?provinceName=${provinceName}`)
       .then((response) => response.json())
       .then((data) => {
         setSubDistricts(data);
@@ -51,7 +52,7 @@ function Register() {
 
   const fetchPostalCodes = (provinceName) => {
     console.log(provinceName);
-    fetch(`http://localhost:3000/api/readPostalCodes?provinceName=${provinceName}`)
+    fetch(BASE_URL + `/api/readPostalCodes?provinceName=${provinceName}`)
       .then((response) => response.json())
       .then((data) => {
         setPostalCodes(data);
@@ -135,7 +136,7 @@ function Register() {
       console.log("Form data:", formData);
 
       // ส่งข้อมูลไปยัง Node.js backend ที่อยู่ใน endpoint /registration โดยใช้ fetch API
-      fetch("http://localhost:3000/api/insertCustomer", {
+      fetch(BASE_URL + "/api/insertCustomer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

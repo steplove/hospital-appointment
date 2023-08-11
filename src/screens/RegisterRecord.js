@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useTokenCheck from "../hooks/useTokenCheck";
 import { Card } from "react-bootstrap";
+import { BASE_URL } from "../constants/constants";
 
 function RegisterRecord() {
   const [firstName, lastname, hospitalNumber] = useTokenCheck();
@@ -8,7 +9,7 @@ function RegisterRecord() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:3000/readAppointment?hospitalNumber=${hospitalNumber}`
+      BASE_URL + `/readAppointment?hospitalNumber=${hospitalNumber}`
     )
       .then((response) => response.json())
       .then((data) => {

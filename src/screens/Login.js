@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Swal from "sweetalert2";
 import logo from "../images/unnamed.png";
 import { Image } from "react-bootstrap";
+import { BASE_URL } from "../constants/constants";
+
 function Copyright(props) {
   return (
     <Typography
@@ -41,7 +43,7 @@ export default function Login() {
       identificationNumber: data.get("identificationNumber"),
       password: data.get("password"),
     };
-    fetch("http://localhost:3000/login", {
+    fetch(BASE_URL + "/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -153,7 +155,7 @@ export default function Login() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/register" variant="body2">
+                  <Link href="/Register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

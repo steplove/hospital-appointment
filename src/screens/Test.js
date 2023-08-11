@@ -1,69 +1,71 @@
-import format from "date-fns/format";
-import getDay from "date-fns/getDay";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
-import React, { useState, useEffect } from "react";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import { Card } from "react-bootstrap";
-import "react-datepicker/dist/react-datepicker.css";
-import { BASE_URL } from "../constants/constants";
-import useTokenCheck from "../hooks/useTokenCheck";
+import React, { useState } from 'react';
+import QRCode from 'qrcode.react';
+import styled from 'styled-components';
 
-const locales = {
-  "en-US": require("date-fns/locale/en-US"),
-};
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales,
-});
+const generatePayload = require('promptpay-qr');
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`
+
+const Container = styled.div`
+  height: 100vh;
+  padding: 4em;
+  background: papayawhip;
+`
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`
+
+const QRWrapper = styled.div`
+  margin: auto;
+  padding: 10px;
+`
+
+const InputWrapper = styled.div`
+  margin: auto;
+  width: 200px;
+  padding: 10px;
+`
 
 function Test() {
-  const [allEvents, setAllEvents] = useState([]);
-  const [username, lastname, hospitalNumber] = useTokenCheck();
+  const [ phoneNumber, setPhoneNumber ] = useState("012-345-6789");
+  const [ amount, setAmount ] = useState(1.00);
+  const [ qrCode ,setqrCode ] = useState("sample");
 
-  useEffect(() => {
-    fetch(BASE_URL + `/api/readAppointment?hospitalNumber=${hospitalNumber}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const formattedEvents = data.map((event) => {
-          const appointmentDate = new Date(event.date_appointment);
-          const appointmentTime = new Date(`1970-01-01T${event.time_appointment}`);
-          const start = new Date(appointmentDate);
-          start.setHours(appointmentTime.getHours());
-          start.setMinutes(appointmentTime.getMinutes());
-          const end = new Date(start);
-          end.setMinutes(start.getMinutes() + 30); // หรือเวลาที่เหมาะสม
-          
-          return {
-            title: event.description,
-            start,
-            end,
-          };
-        });
-        setAllEvents([...allEvents, ...formattedEvents]);
-      })
-      .catch((error) => console.error(error));
-  }, [hospitalNumber]);
+  function handlePhoneNumber(e) {
+    setPhoneNumber(e.target.value);
+  }
+
+  function handleAmount(e) {
+    if (e.target.value > 0) {
+      setAmount(parseFloat(e.target.value));
+    } else setAmount(0);
+  }
+
+  function handleQR() {
+    setqrCode(generatePayload(phoneNumber, { amount }));
+  }
 
   return (
-    <div className="App">
-      <Card className="mt-5">
-        <h1 className="mt-5 text-center">ปฏิทิน การนัดหมาย</h1>
-        <Calendar
-          localizer={localizer}
-          events={allEvents}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 700 }}
-          toolbar={false}
-          view="agenda"
-        />
-      </Card>
-    </div>
+    <Container>
+      <Title>I'm out of money so please donate me!</Title>
+      <FlexContainer>
+        <QRWrapper>
+          <QRCode value={qrCode} />
+        </QRWrapper>
+        <InputWrapper>
+          <input type="text" value={phoneNumber} onChange={handlePhoneNumber} />
+          <input type="number" value={amount} onChange={handleAmount} />
+          <button onClick={handleQR}>Generate Promptpay QR</button>
+        </InputWrapper>
+      </FlexContainer>
+    </Container>
   );
 }
 

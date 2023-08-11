@@ -31,13 +31,15 @@ function Appointment() {
       .then((data) => {
         const formattedEvents = data.map((event) => {
           const appointmentDate = new Date(event.date_appointment);
-          const appointmentTime = new Date(`1970-01-01T${event.time_appointment}`);
+          const appointmentTime = new Date(
+            `1970-01-01T${event.time_appointment}`
+          );
           const start = new Date(appointmentDate);
           start.setHours(appointmentTime.getHours());
           start.setMinutes(appointmentTime.getMinutes());
           const end = new Date(start);
           end.setMinutes(start.getMinutes() + 30); // หรือเวลาที่เหมาะสม
-          
+
           return {
             title: event.description,
             start,
@@ -52,7 +54,12 @@ function Appointment() {
   return (
     <div className="App">
       <Card className="mt-5">
-        <h1 className="mt-5 text-center">ปฏิทิน การนัดหมาย</h1>
+        <Card.Header
+          className="text-center"
+          style={{ backgroundColor: "black", color: "white" }}
+        >
+          <h4>ปฏิทิน การนัดหมาย</h4>
+        </Card.Header>
         <Calendar
           localizer={localizer}
           events={allEvents}

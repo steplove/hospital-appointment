@@ -15,6 +15,7 @@ import RegisterRecord from "./screens/RegisterRecord";
 import Appointment from "./screens/Appointment";
 import OTP from "./screens/OTP";
 import History from "./screens/History";
+import ContactMedical from "./screens/ContactMedical";
 function App() {
   const currentPath = window.location.pathname;
 
@@ -26,11 +27,14 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/OTP" element={<OTP />} />
+          <Route path="/ContactMedical" element={<ContactMedical />} />
+
         </Routes>
       </>
       {currentPath !== "/Login" &&
         currentPath !== "/Register" &&
         currentPath !== "/" &&
+        currentPath !== "/ContactMedical" &&
         currentPath !== "/OTP" && (
           <>
             <Navigation />

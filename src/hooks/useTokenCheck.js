@@ -5,8 +5,8 @@ function useTokenCheck() {
     identificationNumber: "",
     firstName: "",
     lastname: "",
-    hospitalNumber:""
-
+    hospitalNumber: "",
+    customer_status: "",
   });
 
   useEffect(() => {
@@ -26,9 +26,13 @@ function useTokenCheck() {
             firstName: data.decoded.firstName,
             lastname: data.decoded.lastName,
             hospitalNumber: data.decoded.hospitalNumber,
+            customer_status: data.decoded.customer_status,
           });
-          console.log(data);
-
+          console.log(data, "token");
+          if (data.decoded.customer_status === "guest") {
+            window.location = "/ContactMedical";
+            console.log(data.decoded.customer_status);
+          }
         } else {
           console.log(data.status);
           alert("Token หมดอายุ");
@@ -40,6 +44,11 @@ function useTokenCheck() {
         console.log("Error", error);
       });
   }, []);
-  return [userData.identificationNumber, userData.lastname,userData.hospitalNumber];
+  return [
+    userData.identificationNumber,
+    userData.lastname,
+    userData.hospitalNumber,
+    userData.customer_status,
+  ];
 }
 export default useTokenCheck;

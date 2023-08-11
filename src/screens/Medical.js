@@ -11,7 +11,7 @@ import "../css/Medical.css";
 import drugLogo from "../images/drug.png";
 import queLogo from "../images/question-mark-circle-outline_1.png";
 function Medical() {
-  useTokenCheck();
+ useTokenCheck();
 
   return (
     <>
