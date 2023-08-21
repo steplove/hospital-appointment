@@ -104,7 +104,7 @@ function History() {
           <h4>ข้อมูลการรักษา</h4>
         </Card.Header>
         <Card.Body>
-          <h1>Lab and X-Say Data</h1>
+          <h1>Lab and X-Ray Data</h1>
 
           <ToggleButtonGroup type="checkbox" value={selectedButton}>
             <ToggleButton

@@ -1,21 +1,22 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Agreement from "./screens/Agreement";
+import Agreement from "./pages/Agreement";
 import Navigation from "./components/Navigation";
-import Login from "./screens/Login";
-import Register from "./screens/Register";
-import Wait from "./screens/Wait";
-import Medical from "./screens/Medical";
-import DeliveryMedicine from "./screens/DeliveryMedicine";
-import Setting from "./screens/Setting";
-import AppNotify from "./screens/AppNotify";
-import Registration from "./screens/Registration";
-import Test from "./screens/Test";
-import ListDoctors from "./screens/ListDoctors";
-import RegisterRecord from "./screens/RegisterRecord";
-import Appointment from "./screens/Appointment";
-import OTP from "./screens/OTP";
-import History from "./screens/History";
-import ContactMedical from "./screens/ContactMedical";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Wait from "./pages/Wait";
+import Medical from "./pages/Medical";
+import DeliveryMedicine from "./pages/DeliveryMedicine";
+import Setting from "./pages/Setting";
+import AppNotify from "./pages/AppNotify";
+import Registration from "./pages/Registration";
+import Test from "./pages/Test";
+import ListDoctors from "./pages/ListDoctors";
+import RegisterRecord from "./pages/RegisterRecord";
+import Appointment from "./pages/Appointment";
+import OTP from "./pages/OTP";
+import History from "./pages/History";
+import ContactMedical from "./pages/ContactMedical";
+import LiffComponent from "./pages/LiffComponent";
 function App() {
   const currentPath = window.location.pathname;
 
@@ -28,7 +29,6 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/OTP" element={<OTP />} />
           <Route path="/ContactMedical" element={<ContactMedical />} />
-
         </Routes>
       </>
       {currentPath !== "/Login" &&
@@ -51,6 +51,7 @@ function App() {
               <Route path="/Appointment" element={<Appointment />} />
               <Route path="/History" element={<History />} />
               <Route path="/Test" element={<Test />} />
+              <Route path="/LiffComponent" element={<LiffComponent />} />
             </Routes>
           </>
         )}

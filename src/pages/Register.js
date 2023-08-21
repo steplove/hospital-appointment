@@ -9,7 +9,7 @@ function Register() {
   useEffect(() => {
     fetchReadProvinceData();
   }, []);
-  //================================ select Rank ===================================//
+  //================================ select Province ===================================//
   const [readProvince, setReadProvince] = useState([]);
   const fetchReadProvinceData = () => {
     fetch(BASE_URL + "/api/readProvince")
