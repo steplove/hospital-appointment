@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Row, Image, Col, Container, Button } from "react-bootstrap";
 import logo from "../images/DSC_3422.jpg";
 import useTokenCheck from "../hooks/useTokenCheck";
 import Barcode from "react-barcode";
 import Swal from "sweetalert2";
 function Setting() {
-  const Swal = require("sweetalert2");
   const [identificationNumber, lastname, hospitalNumber] = useTokenCheck();
+  const initialLoggedInState = localStorage.getItem("token") ? true : false;
+  const [isLoggedIn, setIsLoggedIn] = useState(initialLoggedInState);
   const handleLogout = () => {
     Swal.fire({
-      icon: "success",
-      title: "Logout Successful",
-      text: "You have successfully logged out.",
-    }).then(() => {
-      localStorage.removeItem("token");
-      window.location = "/Login";
+      icon: "warning",
+      title: "ยืนยันการออกจากระบบ",
+      text: "คุณแน่ใจว่าคุณต้องการที่จะออกจากระบบ?",
+      showCancelButton: true,
+      confirmButtonText: "ใช่, ออกจากระบบ",
+      cancelButtonText: "ยกเลิก",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsLoggedIn(false);
+        Swal.fire({
+          icon: "success",
+          title: "ออกจากระบบสำเร็จ",
+          text: "คุณได้ออกจากระบบเรียบร้อยแล้ว",
+        }).then(() => {
+          const token = localStorage.getItem("token");
+          if (token) {
+            localStorage.removeItem("token");
+            window.location = "/Login";
+          } else {
+            // Handle case where token is not found
+            console.error("Token not found");
+          }
+        });
+      }
     });
   };
+
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
@@ -74,39 +96,48 @@ function Setting() {
         </Card.Body>
       </Card>
       <br />
-      <Container>
-        <Card>
-          <Card.Body className="card-box">
-            <Row>
-              <Col xs={3} sm={3} md={3} lg={2}>
-                <Image
-                  src={logo}
-                  roundedCircle
-                  style={{ width: "50px", height: "50px" }}
-                />
-              </Col>
-              <Col xs={9} sm={9} md={9} lg={10} className="align-self-center">
-                <span>แพ้ยา/อาการไม่พึงประสงค์</span>
-                <p>Drug allergy/Side effects</p>
-              </Col>
-            </Row>
-            <div className="agreement-text w100"></div>
-            <a href="/">
-              <Row>
-                <Col xs={3} sm={3} md={3} lg={2}>
-                  <Image
-                    src={logo}
-                    roundedCircle
-                    style={{ width: "50px", height: "50px" }}
-                  />
-                </Col>
-                <Col xs={9} sm={9} md={9} lg={10} className="align-self-center">
-                  <span>ครอบครัวของฉัน</span>
-                  <p>My Family</p>
-                </Col>
-              </Row>
-            </a>
-            <div className="agreement-text w100"></div>
+      <Card>
+        <Card.Body className="card-box">
+          <Row
+            className="d-flex align-items-center justify-content-start"
+            style={{ marginRight: "13%" }}
+          >
+            <Col
+              xs={3}
+              sm={3}
+              md={3}
+              lg={2}
+              className="d-flex align-items-center justify-content-start"
+            >
+              <Image
+                src={logo}
+                roundedCircle
+                style={{ width: "50px", height: "50px" }}
+              />
+            </Col>
+            <Col xs={9} sm={9} md={9} lg={10}>
+              <span>แพ้ยา/อาการไม่พึงประสงค์</span>
+              <p>Drug allergy/Side effects</p>
+            </Col>
+          </Row>
+          <Row
+            className="d-flex align-items-center justify-content-start"
+            style={{ marginRight: "30%" }}
+          >
+            <Col xs={4} sm={3} md={3} lg={2}>
+              <Image
+                src={logo}
+                roundedCircle
+                style={{ width: "50px", height: "50px" }}
+              />
+            </Col>
+            <Col xs={8} sm={9} md={9} lg={10}>
+              <span>ครอบครัวของฉัน</span>
+              <p>My Family</p>
+            </Col>
+          </Row>
+
+          {/* <div className="agreement-text w100"></div>
             <a href="/">
               <Row>
                 <Col xs={3} sm={3} md={3} lg={2}>
@@ -137,10 +168,9 @@ function Setting() {
                   <p>Notification</p>
                 </Col>
               </Row>
-            </a>
-          </Card.Body>
-        </Card>
-      </Container>
+            </a> */}
+        </Card.Body>
+      </Card>
       <div className="text-center mt-3">
         <Button variant="danger justify-center" onClick={handleLogout}>
           {" "}

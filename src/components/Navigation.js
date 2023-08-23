@@ -15,14 +15,33 @@ const Navigation = (props) => {
   const initialLoggedInState = localStorage.getItem("token") ? true : false;
   const [isLoggedIn, setIsLoggedIn] = useState(initialLoggedInState);
   const handleLogout = () => {
-    setIsLoggedIn(false);
     Swal.fire({
-      icon: "success",
-      title: "Logout Successful",
-      text: "You have successfully logged out.",
-    }).then(() => {
-      localStorage.removeItem("token");
-      window.location = "/Login";
+      title: "ยืนยันการออกจากระบบ",
+      text: "คุณต้องการออกจากระบบหรือไม่?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "ยืนยัน",
+      cancelButtonText: "ยกเลิก",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsLoggedIn(false);
+        Swal.fire({
+          icon: "success",
+          title: "ออกจากระบบสำเร็จ",
+          text: "คุณได้ออกจากระบบเรียบร้อยแล้ว",
+        }).then(() => {
+          const token = localStorage.getItem("token");
+          if (token) {
+            localStorage.removeItem("token");
+            window.location = "/Login";
+          } else {
+            // Handle case where token is not found
+            console.error("Token not found");
+          }
+        });
+      }
     });
   };
   return (
@@ -52,9 +71,15 @@ const Navigation = (props) => {
             </>
           ) : (
             <>
-              <div style={{ display: "flex", justifyContent: "flex-end" ,marginLeft:"90%"}}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginLeft: "90%",
+                }}
+              >
                 <NavItem>
-                  <NavLink to="/" className="nav-link" onClick={handleLogout}>
+                  <NavLink className="nav-link" onClick={handleLogout}>
                     <div>ออกระบบ</div>
                   </NavLink>
                 </NavItem>

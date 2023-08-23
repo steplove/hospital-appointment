@@ -53,7 +53,7 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "ok") {
-          Swal.fire("Login Success", "You clicked the button!", "success").then(
+          Swal.fire("เข้าสู่ระบบสำเร็จ", "ยินดีต้อนรับเข้าสู่ ", "success").then(
             () => {
               localStorage.setItem("token", data.token);
               localStorage.setItem("identificationNumber", data.identificationNumber);
@@ -63,8 +63,8 @@ export default function Login() {
         } else {
           Swal.fire({
             icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
+            title: "ชื่อผู้ใช้หรือพาสเวอร์ดไม่ถูกต้อง",
+            text: "กรุณากรอกข้อมูลใหม่อีกครั้ง",
           });
         }
       })

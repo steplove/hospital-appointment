@@ -36,10 +36,10 @@ function Register() {
   };
 
   const [subDistricts, setSubDistricts] = useState([]);
-  const fetchSubDistricts = (provinceName) => {
-    console.log(provinceName);
+  const fetchSubDistricts = (amphureId) => {
+    console.log(amphureId);
 
-    fetch(BASE_URL + `/api/readDistricts?provinceName=${provinceName}`)
+    fetch(BASE_URL + `/api/readDistricts?amphureId=${amphureId}`)
       .then((response) => response.json())
       .then((data) => {
         setSubDistricts(data);
@@ -50,9 +50,8 @@ function Register() {
   };
   const [postalCodes, setPostalCodes] = useState([]);
 
-  const fetchPostalCodes = (provinceName) => {
-    console.log(provinceName);
-    fetch(BASE_URL + `/api/readPostalCodes?provinceName=${provinceName}`)
+  const fetchPostalCodes = (amphureId) => {
+    fetch(BASE_URL + `/api/readPostalCodes?amphureId=${amphureId}`)
       .then((response) => response.json())
       .then((data) => {
         setPostalCodes(data);
@@ -61,6 +60,7 @@ function Register() {
         console.error("Error fetching postal codes:", error);
       });
   };
+  
   const [formData, setFormData] = useState({
     identificationType: "",
     identificationNumber: "",
@@ -367,6 +367,7 @@ function Register() {
                       />
                     </Col>
                   </Form.Group>
+                  
                   <Form.Group as={Row}>
                     <Col sm={6} md={6} lg={6}>
                       <Form.Label>
@@ -448,7 +449,7 @@ function Register() {
                         {postalCodes &&
                           postalCodes.length > 0 &&
                           postalCodes.map((postalCode) => (
-                            <option key={postalCode.id} value={postalCode.id}>
+                            <option key={postalCode.id} value={postalCode.zip_code}>
                               {postalCode.zip_code}
                             </option>
                           ))}

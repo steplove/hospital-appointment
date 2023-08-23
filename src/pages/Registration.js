@@ -8,6 +8,8 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import useTokenCheck from "../hooks/useTokenCheck";
 // ES6 Modules or TypeScript
 import Swal from "sweetalert2";
@@ -17,17 +19,20 @@ function Registration() {
   const Swal = require("sweetalert2");
   const [identificationNumber, lastname, hospitalNumber] = useTokenCheck();
   const [appointmentDate, setAppointmentDate] = useState("");
-  const [appointmentTime, setAppointmentTime] = useState("");
   const [selectClinic, setSelectClinic] = useState("");
   const [selectDoctor, setSelectDoctor] = useState("");
   const [description, setDescription] = useState("");
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
   //======================== Regis ==============================//
   const handleRegister = (e) => {
     e.preventDefault();
 
     if (
       !appointmentDate ||
-      !appointmentTime ||
+      !selectedAppointmentTime ||
       !selectClinic ||
       !selectDoctor ||
       !description
@@ -39,7 +44,7 @@ function Registration() {
     const employeeData = {
       hospitalNumber: hospitalNumber,
       appointmentDate: appointmentDate,
-      appointmentTime: appointmentTime,
+      appointmentTime: selectedAppointmentTime,
       selectClinic: selectClinic,
       selectDoctor: selectDoctor,
       description: description,
@@ -62,7 +67,13 @@ function Registration() {
       })
       .then((data) => {
         console.log(data);
-        Swal.fire("Save Success", "You clicked the button!", "success");
+        Swal.fire({
+          title: "บันทึกสำเร็จ",
+          icon: "success",
+        }).then(() => {
+          window.location = "/Medical";
+        });
+
         handleCancel();
       })
       .catch((error) => {
@@ -78,19 +89,26 @@ function Registration() {
   //=================================== Clear data ========================//
   const handleCancel = () => {
     setAppointmentDate("");
-    setAppointmentTime("");
+    setSelectedAppointmentTime("");
     setSelectClinic("");
     setSelectDoctor("");
     setDescription("");
   };
   //================================ handleAppointmentTimeChange=====================//
 
-  const handleAppointmentDateChange = (event) => {
-    setAppointmentDate(event.target.value);
-  };
+  const [selectedAppointmentTime, setSelectedAppointmentTime] = useState(null);
+  //======================== Date ==============================//
 
-  const handleAppointmentTimeChange = (event) => {
-    setAppointmentTime(event.target.value); // เพิ่มการ set ค่า appointmentTime ตามที่ผู้ใช้กรอก
+  const handleDateChange = (date) => {
+    console.log("Selected date:", date);
+    setAppointmentDate(date);
+  };
+  const handleToggleAppointmentTime = (time) => {
+    if (selectedAppointmentTime === time) {
+      setSelectedAppointmentTime(null); // ยกเลิกการเลือก
+    } else {
+      setSelectedAppointmentTime(time);
+    }
   };
 
   const handleSelectClinicChange = (event) => {
@@ -102,6 +120,14 @@ function Registration() {
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
+  const timeSlots = [
+    { label: "09.00-10.00", value: "09:00" },
+    { label: "10.00-11.00", value: "10:00" },
+    { label: "11.00-12.00", value: "11:00" },
+    { label: "13.00-14.00", value: "13:00" },
+    { label: "14.00-15.00", value: "14:00" },
+    { label: "15.00-16.00", value: "15:00" },
+  ];
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light text-center">
@@ -162,10 +188,17 @@ function Registration() {
                           <Form.Label>
                             <strong>วันที่นัด</strong>
                           </Form.Label>
-                          <Form.Control
-                            type="date"
-                            value={appointmentDate}
-                            onChange={handleAppointmentDateChange}
+                          <br />
+                          <DatePicker
+                            selected={appointmentDate}
+                            onChange={handleDateChange}
+                            className="date-picker"
+                            dateFormat="dd/MM/yyyy"
+                            minDate={tomorrow}
+                            placeholderText="Select a date"
+                            isClearable
+                            showYearDropdown
+                            scrollableYearDropdown
                           />
                         </FormGroup>
                       </Col>
@@ -174,11 +207,23 @@ function Registration() {
                           <Form.Label>
                             <strong>เวลาที่นัด</strong>
                           </Form.Label>
-                          <Form.Control
-                            type="time"
-                            value={appointmentTime}
-                            onChange={handleAppointmentTimeChange}
-                          />
+                          <br />
+                          {timeSlots.map((slot) => (
+                            <Button
+                              className="ml-2 mb-2"
+                              key={slot.value}
+                              variant={
+                                selectedAppointmentTime === slot.value
+                                  ? "dark"
+                                  : "outline-dark"
+                              }
+                              onClick={() =>
+                                handleToggleAppointmentTime(slot.value)
+                              }
+                            >
+                              {slot.label}
+                            </Button>
+                          ))}
                         </FormGroup>
                       </Col>
                       <Col>

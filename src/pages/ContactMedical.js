@@ -25,7 +25,7 @@ function ContactMedical() {
             }}
           >
             <span style={{ color: "red", marginRight: "8px" }}>❗</span>
-            กรุณาติดต่อเวชระเบียน
+            กรุณาติดต่อเวชระเบียน เพื่อยืนยันตัวตน
           </h2>
           <h3 style={{ textAlign: "center" }}>หรือโทร 0-5391-0999</h3>
           <a href="/Login" style={{ color: "white" }}>

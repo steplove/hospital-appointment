@@ -38,7 +38,7 @@ function Appointment() {
           start.setHours(appointmentTime.getHours());
           start.setMinutes(appointmentTime.getMinutes());
           const end = new Date(start);
-          end.setMinutes(start.getMinutes() + 30); // หรือเวลาที่เหมาะสม
+          end.setMinutes(start.getMinutes() + 60); // หรือเวลาที่เหมาะสม
 
           return {
             title: event.description,

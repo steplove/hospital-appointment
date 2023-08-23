@@ -66,3 +66,14 @@ body {
   background-repeat: no-repeat;
   background-color: rgba(255, 255, 255, 0.5); /* ใช้ rgba() เพื่อเพิ่มความโปร่งใสให้กับพื้นหลัง */
 }
+/* Style for the date picker */
+.date-picker {
+  appearance: none;
+  background-color: white;
+  border: 1px solid #ced4da;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 100%;
+}
