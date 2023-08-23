@@ -60,7 +60,7 @@ function Register() {
         console.error("Error fetching postal codes:", error);
       });
   };
-  
+
   const [formData, setFormData] = useState({
     identificationType: "",
     identificationNumber: "",
@@ -367,7 +367,7 @@ function Register() {
                       />
                     </Col>
                   </Form.Group>
-                  
+
                   <Form.Group as={Row}>
                     <Col sm={6} md={6} lg={6}>
                       <Form.Label>
@@ -449,7 +449,10 @@ function Register() {
                         {postalCodes &&
                           postalCodes.length > 0 &&
                           postalCodes.map((postalCode) => (
-                            <option key={postalCode.id} value={postalCode.zip_code}>
+                            <option
+                              key={postalCode.id}
+                              value={postalCode.zip_code}
+                            >
                               {postalCode.zip_code}
                             </option>
                           ))}
@@ -467,7 +470,9 @@ function Register() {
                         name="mobile"
                         value={formData.mobile}
                         onChange={handleInputChange}
-                        required // เพิ่ม required attribute เพื่อตรวจสอบข้อมูล
+                        required
+                        pattern="[0-9]{10}" // รูปแบบเป็นตัวเลขและมีจำนวน 10 ตัว
+                        maxLength="10" // จำกัดความยาวที่ 10 ตัวอักษร
                       />
                     </Col>
                     <Col sm={4} md={4} lg={6}>
