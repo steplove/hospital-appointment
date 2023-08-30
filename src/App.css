@@ -77,3 +77,43 @@ body {
   cursor: pointer;
   width: 100%;
 }
+.back-to-login {
+  display: flex;
+  align-items: center;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  width: 100%; /* กำหนดความกว้างเต็มหน้าจอ */
+}
+
+
+.back-icon {
+  margin-right: 5px;
+}
+.back-to-home {
+  background-color: #343a40; /* สีพื้นหลัง */
+  color: white; /* สีตัวอักษร */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.back-to-home:hover {
+  background-color: #212529; /* สีพื้นหลังเมื่อโฮเวอร์ */
+}
+.hidden {
+  display: none;
+}
+
+/* แสดง Nav เมื่อยังไม่ได้ล็อกอิน */
+.show {
+  display: flex;
+  /* หรืออื่น ๆ ตามที่คุณต้องการ */
+}
+.greeContact{
+  background-color: #edf7ed;
+  width: 100%;
+  color: #035c47;
+}

@@ -12,22 +12,20 @@ function ContactMedical() {
         minHeight: "100vh",
       }}
     >
-      <Card style={{ maxWidth: "400px", width: "100%", padding: "20px" }}>
+      <Card style={{ width: "90%", padding: "20px" }}>
         <Card.Body>
+          <h5>การลงทะเบียนผู้ใช้ของคุณสำเร็จแล้ว </h5>{" "}
           <div style={{ textAlign: "center", marginBottom: "20px" }}>
             <Image src={logo} alt="Siburin Logo" style={{ width: "300px" }} />
           </div>
-          <h2
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span style={{ color: "red", marginRight: "8px" }}>❗</span>
-            กรุณาติดต่อเวชระเบียน เพื่อยืนยันตัวตน
-          </h2>
-          <h3 style={{ textAlign: "center" }}>หรือโทร 0-5391-0999</h3>
+          <p>
+            {" "}
+            สมัครใช้บริการ Smart Apppointments เสร็จเรียบร้อย
+            เพื่อความปลอดภัยของข้อมูลของท่าน กรุณาติดต่อเวชระเบียน
+            เพื่อยืนยันตัวตนก่อนการใช้งานที่ เวรระเบียน ณ โรงพยาบาลเกษมราษฎร์
+            ศรีบุรินทร์ ชั้น 1 อาคารศูนย์การแพทย์เฉพาะทาง{" "}
+          </p>
+          <p style={{ textAlign: "center" }}>หรือโทร 0-5391-0999</p>
           <a href="/Login" style={{ color: "white" }}>
             <Button variant="primary" style={{ width: "100%" }}>
               กลับสู่หน้าหลัก

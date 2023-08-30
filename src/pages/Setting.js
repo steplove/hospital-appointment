@@ -25,16 +25,20 @@ function Setting() {
           icon: "success",
           title: "ออกจากระบบสำเร็จ",
           text: "คุณได้ออกจากระบบเรียบร้อยแล้ว",
-        }).then(() => {
+          showConfirmButton: false,
+        });
+
+        // รอเวลา 2 วินาทีก่อนที่จะเปลี่ยนหน้า
+        setTimeout(() => {
           const token = localStorage.getItem("token");
           if (token) {
             localStorage.removeItem("token");
-            window.location = "/Login";
+            window.location = "/Agreement"; // เปลี่ยนหน้าไปยัง "/Login"
           } else {
             // Handle case where token is not found
             console.error("Token not found");
           }
-        });
+        }, 2000);
       }
     });
   };

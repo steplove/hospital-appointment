@@ -70,18 +70,20 @@ function Registration() {
         Swal.fire({
           title: "บันทึกสำเร็จ",
           icon: "success",
-        }).then(() => {
-          window.location = "/Medical";
+          showConfirmButton: false,
+          timer: 2000,
         });
-
+        setTimeout(() => {
+          window.location = "/Medical";
+        }, 2000);
         handleCancel();
       })
       .catch((error) => {
         console.error(error);
         Swal.fire({
           icon: "error",
-          title: "Oops..." + error.message,
-          text: "Something went wrong!",
+          title: "เกิดข้อผิดพลาด" + error.message,
+          text: "",
         });
         handleCancel();
       });

@@ -34,7 +34,6 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Login() {
-  
   const Swal = require("sweetalert2");
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -53,19 +52,32 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "ok") {
-          Swal.fire("เข้าสู่ระบบสำเร็จ", "ยินดีต้อนรับเข้าสู่ ", "success").then(
-            () => {
+          Swal.fire({
+            icon: "success",
+            title: "เข้าสู่ระบบสำเร็จ",
+            text: "ยินดีต้อนรับเข้าสู่",
+            showConfirmButton: false,
+            timer: 1000,
+          }).then(() => {
+            setTimeout(() => {
               localStorage.setItem("token", data.token);
-              localStorage.setItem("identificationNumber", data.identificationNumber);
+              localStorage.setItem(
+                "identificationNumber",
+                data.identificationNumber
+              );
               window.location = "/Medical";
-            }
-          );
+            }, 1000);
+          });
         } else {
           Swal.fire({
             icon: "error",
             title: "ชื่อผู้ใช้หรือพาสเวอร์ดไม่ถูกต้อง",
             text: "กรุณากรอกข้อมูลใหม่อีกครั้ง",
+            showConfirmButton: false,
           });
+          setTimeout(() => {
+            window.location = "/Login";
+          }, 1000);
         }
       })
       .catch((error) => {
@@ -75,7 +87,7 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-         <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
           item
@@ -104,11 +116,15 @@ export default function Login() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 2,width: 70, height: 70 }}>
-            <Image src={logo} rounded style={{ with: "70px", height: "70px" }} />
+            <Avatar sx={{ m: 2, width: 70, height: 70 }}>
+              <Image
+                src={logo}
+                rounded
+                style={{ with: "70px", height: "70px" }}
+              />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Smart Apppointments
             </Typography>
             <Box
               component="form"
@@ -136,10 +152,6 @@ export default function Login() {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -149,11 +161,6 @@ export default function Login() {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
                   <Link href="/Register" variant="body2">
                     {"Don't have an account? Sign Up"}
